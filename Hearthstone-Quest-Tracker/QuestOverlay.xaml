@@ -4,7 +4,7 @@
 	mc:Ignorable="d"
 	d:DesignHeight="100"
 	d:DesignWidth="300"
-	Width="150"
+	Width="180"
 	Height="102">
 	<UserControl.Resources>
 		<Style
@@ -46,7 +46,7 @@
 				Value="Wrap" />
 			<Setter
 				Property="FontSize"
-				Value="15" />
+				Value="17" />
 			<Setter
 				Property="Foreground"
 				Value="Chartreuse" />
@@ -112,7 +112,7 @@
 			Grid.Row="2"
 			Grid.Column="0">
 			<Run
-				Text="Warlock" />
+				Text="Hero Power" />
 		</TextBlock>
 		<TextBlock
 			x:Name="playedBlock3"

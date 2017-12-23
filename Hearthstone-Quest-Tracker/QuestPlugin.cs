@@ -40,9 +40,14 @@ namespace Hearthstone_Quest_Tracker
 			GameEvents.OnTurnStart.Add(tracker.TurnStart);
 			GameEvents.OnPlayerPlay.Add(tracker.CardPlay);
 			GameEvents.OnGameEnd.Add(tracker.GameEnd);
+			GameEvents.OnPlayerHeroPower.Add(tracker.HeroPower);
 			
-			/* this.menuItem = new MenuItem() { Header = "Choose Quest" };
-			var chooseclass = new MenuItem() {Header = "Class"};
+			this.menuItem = new MenuItem() { Header = "Choose Quests" };
+			this.menuItem.Click += (sender, e) => {
+				var x = new QuestSelection(tracker);
+			};
+			
+			/*var chooseclass = new MenuItem() {Header = "Class"};
 			var warrior = new MenuItem() {Header = "Warrior"};
 			warrior.Click += (sender, e) => tracker.SetQuest("Warrior");
 			var shaman = new MenuItem() {Header = "Shaman"};
@@ -121,7 +126,7 @@ namespace Hearthstone_Quest_Tracker
 		
 		public Version Version
 		{
-			get { return new Version(0, 0, 1); }
+			get { return new Version(0, 1, 0); }
 		}
 	}
 }

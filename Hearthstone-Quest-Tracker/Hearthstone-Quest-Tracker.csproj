@@ -69,10 +69,15 @@
     </Compile>
     <Compile Include="QuestPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuestSelection.xaml.cs">
+      <DependentUpon>QuestSelection.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="QuestTracker.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="QuestOverlay.xaml" />
+    <Page Include="QuestSelection.xaml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

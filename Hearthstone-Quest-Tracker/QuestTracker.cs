@@ -34,27 +34,25 @@ namespace Hearthstone_Quest_Tracker
 		public QuestTracker(QuestOverlay _overlay)
 		{
 			this.overlay = _overlay;
-			quest_list = new List<Quest>();
-			SetQuest("Paladin");
-			SetQuest("Hunter");
-			SetQuest("Warrior");
+			this.quest_list = new List<Quest>();
 			
 			if (Config.Instance.HideInMenu && CoreAPI.Game.IsInMenu)
 				overlay.Hide();
-			
 		}
 		
-		internal void SetQuest(string qname)
+		internal bool SetQuest(string qname)
 		{
 			Quest q = new Quest(qname);
 			if(quest_list.Count < 3)
 			{
 				quest_list.Add(q);
 				Log.Info("----- Added quest for "+qname+" -----");
+				return true;
 			}
 			else
 			{
 				Log.Info("----- Quest list is full! -----");
+				return false;
 			}
 		}
 		
@@ -83,6 +81,8 @@ namespace Hearthstone_Quest_Tracker
         	bool minionQuest = quest_list.Any(quest => quest.category.Equals("minion"));
         	bool otherQuest = quest_list.Any(quest => quest.category.Equals("other"));
         	
+        	Log.Info("----- This card has Race: " + card.Race + " and RaceorType: " + card.RaceOrType + " -----");
+        	
         	if(classQuest)
         	{
         		foreach(var q in quest_list)
@@ -92,9 +92,33 @@ namespace Hearthstone_Quest_Tracker
         		}
         		
         	}
+        	if(minionQuest)
+        	{
+        		foreach(var q in quest_list)
+        		{
+        			if(card.RaceOrType.Equals(q.quest_name))
+        				q.count++;
+        		}
+        	}
         	
         	string oldClass = card.GetPlayerClass;
-        	Log.Info("----- You just played " + oldClass + " card -----");
+        	Log.Info("----- You just played " + oldClass + " " + card.RaceOrType + " card -----");
+        	overlay.UpdateQuests(quest_list);
+        }
+        
+        internal void HeroPower()
+        {
+        	bool otherQuest = quest_list.Any(quest => quest.category.Equals("other"));
+        	
+        	if(otherQuest)
+        	{
+        		foreach(var q in quest_list)
+        		{
+        			if(q.quest_name.Equals("Hero Power"))
+        				q.count++;
+        		}
+        	}
+        	
         	overlay.UpdateQuests(quest_list);
         }
 	}

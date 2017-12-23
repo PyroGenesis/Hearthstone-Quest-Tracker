@@ -32,9 +32,15 @@ namespace Hearthstone_Quest_Tracker
 		public Quest(string qname)
 		{
 			this.quest_name = qname;
-			if(qname.Equals("Warrior") || qname.Equals("Shaman") || qname.Equals("Rogue") || qname.Equals("Paladin") || qname.Equals("Hunter") || qname.Equals("Druid") || qname.Equals("Warlock") || qname.Equals("Mage") || qname.Equals("Priest"))
+			if(qname.Equals("Hero Power"))
+				this.category = "other";
+			else if(qname.Equals("Murloc") || qname.Equals("Demon"))
+				this.category = "minion";
+			else if(qname.Equals("Warrior") || qname.Equals("Shaman") || qname.Equals("Rogue") || qname.Equals("Paladin") || qname.Equals("Hunter") || qname.Equals("Druid") || qname.Equals("Warlock") || qname.Equals("Mage") || qname.Equals("Priest"))
 				this.category = "class";
+			
 			this.count = 0;
+			this.reward = 0;
 		}
 	}
 }

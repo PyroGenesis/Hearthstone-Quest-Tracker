@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+	x:Class="Hearthstone_Quest_Tracker.QuestSelection" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	Title="Choose Quests"
+	Height="250"
+	Width="300"
+	ResizeMode="NoResize">
+	<Grid>
+		<Grid
+			HorizontalAlignment="Center"
+			Height="60"
+			Width="250"
+			Margin="10,-40,10,10">
+			<Grid.RowDefinitions>
+				<RowDefinition
+					Height="1*" />
+				<RowDefinition
+					Height="1*" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition
+					Width="4*" />
+				<ColumnDefinition
+					Width="6*" />
+			</Grid.ColumnDefinitions>
+			<Label
+				Name="labelCategory"
+				Width="auto"
+				Grid.Column="0"
+				Grid.Row="0"
+				Content="Category:"
+				VerticalAlignment="Top"
+				Padding="5,0,5,0"
+				Height="20"
+				HorizontalAlignment="Right"
+				Margin="0,0,10,0" />
+			<ComboBox
+				Name="comboCategory"
+				Height="20"
+				Grid.Column="1"
+				Grid.Row="0"
+				VerticalAlignment="Top"
+				HorizontalAlignment="Left"
+				Padding="5,0,5,0"
+				DropDownClosed="ComboCategory_DropDownClosed"
+				Width="120">
+				<ComboBoxItem
+					x:Name="Class">Class</ComboBoxItem>
+				<ComboBoxItem
+					x:Name="Other">Other</ComboBoxItem>
+			</ComboBox>
+			<Label
+				Name="labelQuest"
+				Width="auto"
+				Grid.Column="0"
+				Grid.Row="1"
+				Content="Quest:"
+				VerticalAlignment="Top"
+				Padding="5,0,5,0"
+				Height="20"
+				HorizontalAlignment="Right"
+				Margin="0,0,10,0" />
+			<ComboBox
+				Name="comboQuest"
+				Height="20"
+				Grid.Column="1"
+				Grid.Row="1"
+				VerticalAlignment="Top"
+				HorizontalAlignment="Left"
+				Padding="5,0,5,0"
+				DropDownClosed="ComboQuest_DropDownClosed"
+				Width="120" />
+		</Grid>
+		<DockPanel
+			Height="75"
+			VerticalAlignment="Bottom"
+			Margin="10">
+			<Button
+				Name="addQuest"
+				DockPanel.Dock="Right"
+				Content="Add Quest"
+				Height="25"
+				Width="75"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Bottom"
+				Click="BtnAddQuest_Click" />
+		</DockPanel>
+	</Grid>
+</Window>
