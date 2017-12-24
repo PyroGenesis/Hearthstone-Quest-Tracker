@@ -46,7 +46,7 @@ namespace Hearthstone_Quest_Tracker
 			
 			if(category.Equals("Class"))
 				labelQuest.Content = "Choose class:";
-			else if(category.Equals("Other"))
+			else if(category.Equals("Misc"))
 				labelQuest.Content = "Choose quest:";
 			labelQuest.Visibility = Visibility.Visible;
 			comboQuest.Visibility = Visibility.Visible;
@@ -100,7 +100,7 @@ namespace Hearthstone_Quest_Tracker
 			{
 				comboItemsGenerator(classes);
 			}
-			else if(_category.Equals("Other"))
+			else if(_category.Equals("Misc"))
 			{
 				comboItemsGenerator(others);
 			}
