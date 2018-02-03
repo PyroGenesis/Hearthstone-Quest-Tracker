@@ -2,25 +2,19 @@ Hearthstone Quest Tracker
 ========================
 This is a plugin for [Hearthstone Deck Tracker](https://github.com/Epix37/Hearthstone-Deck-Tracker)
 
-Hearthstone has a lot of daily play quests, many of which warrant their own decks. However, there is no way to know the progress of these quests while playing a match.
+Hearthstone does not track Daily Quests from within a match. This plugin attempts to fix that. Useful for when you play matches just to complete quests (which I do often).
 
-This plugin attempts to solve this problem by allowing you to set and keep track of progress in your daily quests by tracking played cards.
+This plugin does this by allowing you to set and keep track of progress in your daily quests by tracking played cards.
   
   
 ## Features
 ![overlay](Hearthstone-Quest-Tracker/images/Screenshots/overlay.png)
 
 Keeps track of the following quests (currently)
-- Class quests
-  - Play X Druid cards
-  - Play X Hunter cards
-  - Play X Mage cards
-  - Play X Paladin cards
-  - Play X Priest cards
-  - Play X Shaman cards
-  - Play X Rogue cards
-  - Play X Warlock cards
-  - Play X Warrior cards
+- Class quests: Play X "Class" cards
+  - Supports all classes (Druid, Hunter, Mage, Paladin, Priest, Shaman, Rogue, Warlock, Warrior)
+- Minion quests
+  - Play Tribe cards (Beasts, Demons, Murlocs, Pirates, Elementals)
 - Miscellaneous quests
   - Use Hero Power X times
   
@@ -55,6 +49,8 @@ Note: This list will expand as I add support for the rest of play quests.
 
 
 ## Feedback
+Currently this tracker is active in all game modes as it is still under development.
+
 I will try to make/keep this plugin functional to the best of my ability. I am very new to C# development so any improvements or suggestions are welcome.
 
 Use the [Issue tracker](https://github.com/PyroGenesis/Hearthstone-Quest-Tracker/issues/new) to send feedback

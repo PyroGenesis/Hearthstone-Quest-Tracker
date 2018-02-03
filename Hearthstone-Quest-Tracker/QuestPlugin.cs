@@ -23,26 +23,37 @@ using CoreAPI = Hearthstone_Deck_Tracker.API.Core;
 
 namespace Hearthstone_Quest_Tracker
 {
+	//Okay so we start here by just extending the Iplugin class
 	public class QuestPlugin : IPlugin
 	{
+		// I needed to create the overlay here so that I could add/remove it from CoreAPI.OverlayCanvas easily (I think)
 		private QuestOverlay overlay;
+		
+		// MenuItem to create the choose quests menu
 		MenuItem menuItem = null;
 		
 		public void OnLoad()
 	    {
-		    //when it's loaded upon each restart/turned on by the user
+		    // When it's loaded upon each restart/turned on by the user
 		    Log.Info("Hello from quest this is load");
+		    
+		    // Overlay created and added on plugin load
 		    overlay = new QuestOverlay();
 		    CoreAPI.OverlayCanvas.Children.Add(overlay);
+		    
+		    // Overlay added to Mai class to actually modiy it
 		    QuestTracker tracker = new QuestTracker(overlay);
 			
+		    // Mapping GameEvents from API.GameEvents
 		    GameEvents.OnGameStart.Add(tracker.GameStart);
 			GameEvents.OnTurnStart.Add(tracker.TurnStart);
 			GameEvents.OnPlayerPlay.Add(tracker.CardPlay);
 			GameEvents.OnGameEnd.Add(tracker.GameEnd);
 			GameEvents.OnPlayerHeroPower.Add(tracker.HeroPower);
 			
+			// Adding Choose Quest menu label
 			this.menuItem = new MenuItem() { Header = "Choose Quests" };
+			// Adding Click event to menuitem which just initializes the QuestSelection overlay
 			this.menuItem.Click += (sender, e) => {
 				var x = new QuestSelection(tracker);
 			};
@@ -82,12 +93,14 @@ namespace Hearthstone_Quest_Tracker
 	    public void OnUnload()
 	    {
 		    // handle unloading here. HDT does not literally unload the assembly
+		    // Removes the tracker overlay
 		    CoreAPI.OverlayCanvas.Children.Remove(overlay);
 	    }
 
 	    public void OnButtonPress()
 	    {
-		    //when user presses the menu button
+		    // TODO: Add settings to change tracker location
+	    	// when user presses the menu button
 	    }
 
 	    public void OnUpdate()
@@ -126,7 +139,8 @@ namespace Hearthstone_Quest_Tracker
 		
 		public Version Version
 		{
-			get { return new Version(0, 1, 0); }
+			// Increment to get Dopamine rush
+			get { return new Version(0, 2, 0); }
 		}
 	}
 }

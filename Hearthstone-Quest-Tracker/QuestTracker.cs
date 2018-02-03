@@ -24,13 +24,16 @@ using CoreAPI = Hearthstone_Deck_Tracker.API.Core;
 namespace Hearthstone_Quest_Tracker
 {
 	/// <summary>
-	/// Description of QuestTracker.
+	/// Main class wihich tracks quests
 	/// </summary>
 	public class QuestTracker
 	{
+		// The tracker overlay
 		internal QuestOverlay overlay;
+		// The List of Quests (objects)
 		internal List<Quest> quest_list;
 		
+		// Basic initialization and hiding overlay (triggered on plugin load)
 		public QuestTracker(QuestOverlay _overlay)
 		{
 			this.overlay = _overlay;
@@ -40,6 +43,9 @@ namespace Hearthstone_Quest_Tracker
 				overlay.Hide();
 		}
 		
+		// Adding a quest to the list (triggered by QuestSelection)
+		// Quests are set using display name
+		// returns status to QuestSelection
 		internal bool SetQuest(string qname)
 		{
 			Quest q = new Quest(qname);
@@ -64,7 +70,8 @@ namespace Hearthstone_Quest_Tracker
         internal void GameStart()
         {
         	Log.Info("Internal GameStart just triggered !!!");
-        	// TODO: Tracker should not run in practice or Spectate mode
+        	// TODO: Tracker should not run in practice or Spectate mode or Dungeon
+        	// Puts quests in overlay and displays overlay
         	overlay.UpdateQuests(quest_list);
         }
         
@@ -77,21 +84,26 @@ namespace Hearthstone_Quest_Tracker
         
         internal void CardPlay(Card card)
         {
+        	// Booleans to see if tracker should check the card with a particular category of quest
         	bool classQuest = quest_list.Any(quest => quest.category.Equals("class"));
         	bool minionQuest = quest_list.Any(quest => quest.category.Equals("minion"));
+        	bool cardTypeQuest = quest_list.Any(quest => quest.category.Equals("cardtype"));
         	bool otherQuest = quest_list.Any(quest => quest.category.Equals("other"));
         	
         	Log.Info("----- This card has Race: " + card.Race + " and RaceorType: " + card.RaceOrType + " -----");
         	
         	if(classQuest)
         	{
+        		// foreach used instead of searching because Tri-class cards
         		foreach(var q in quest_list)
         		{
+        			// card.IsClass used over card.GetPlayerClass because Tri-class cardes go confused
         			if(card.IsClass(q.quest_name))
         				q.count++;
         		}
         		
         	}
+        	
         	if(minionQuest)
         	{
         		foreach(var q in quest_list)
@@ -101,15 +113,17 @@ namespace Hearthstone_Quest_Tracker
         		}
         	}
         	
+        	// updating overlay count
+        	overlay.UpdateQuests(quest_list);
+        	
         	string oldClass = card.GetPlayerClass;
         	Log.Info("----- You just played " + oldClass + " " + card.RaceOrType + " card -----");
-        	overlay.UpdateQuests(quest_list);
         }
         
+        // Only used for the hero power quest
         internal void HeroPower()
         {
         	bool otherQuest = quest_list.Any(quest => quest.category.Equals("other"));
-        	
         	if(otherQuest)
         	{
         		foreach(var q in quest_list)
@@ -118,7 +132,6 @@ namespace Hearthstone_Quest_Tracker
         				q.count++;
         		}
         	}
-        	
         	overlay.UpdateQuests(quest_list);
         }
 	}

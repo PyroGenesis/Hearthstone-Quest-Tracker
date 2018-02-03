@@ -19,13 +19,28 @@ using System.Windows.Media;
 
 namespace Hearthstone_Quest_Tracker
 {
+	/// <summary>
+	/// A trigger-happy set of dropdowns that is my GUI for choosing quests based on categories
+	/// May become obsolete once I learn to read Achievements.Log
+	/// 
+	/// I started by using OnSelection but since I reset some fields it led to a cascade of OnSelections firing which were causing a mess
+	/// So I used DropDownClosed which is much better
+	/// A set of two methods: loadComboQuestData() and comboItemsGenerator() are used to repopulate the quest dropdown
+	/// 
+	/// TODO: Add support for custom count
+	/// </summary>
 	public partial class QuestSelection : Window
 	{
+		// Stores actual cateegory and quest chosen
 		internal string category;
 		internal string quest;
+		
+		// The ObservableCollection is a collection that will force UI using it to update (the quest dropdown)
+		// The tracker object is used for Setting quests (which I get from main tracker)
 		private ObservableCollection<ComboBoxItem> quest_list;
 		private QuestTracker tracker;
 
+		// Initialize stuff, display the window, empty out category and quest and set the source of quest dropdown to the ObservableCollection
 		public QuestSelection(QuestTracker _tracker)
 		{
 			InitializeComponent();
@@ -38,6 +53,8 @@ namespace Hearthstone_Quest_Tracker
 			comboQuest.ItemsSource = quest_list;
 		}
 		
+		// Category should reset everything else so do that
+		// Plus change the label of, and make quest dropdown visible, and trigger the function that loads data into it based on category
 		void ComboCategory_DropDownClosed(object sender, EventArgs e)
 		{
 			category = ((ComboBoxItem)comboCategory.SelectedItem).Content.ToString();
@@ -46,6 +63,8 @@ namespace Hearthstone_Quest_Tracker
 			
 			if(category.Equals("Class"))
 				labelQuest.Content = "Choose class:";
+			else if(category.Equals("Minion"))
+				labelQuest.Content = "Choose minion:";
 			else if(category.Equals("Misc"))
 				labelQuest.Content = "Choose quest:";
 			labelQuest.Visibility = Visibility.Visible;
@@ -57,6 +76,10 @@ namespace Hearthstone_Quest_Tracker
 			quest = ((ComboBoxItem)comboQuest.SelectedItem).Content.ToString();
 		}
 		
+		// If every data is OK, try to add quest
+		// If not display error
+		// If failure display error (>3 quests not possible)
+		// TODO: Clear everyhing after success or failure
 		void BtnAddQuest_Click(object sender, RoutedEventArgs e)
 		{
 			if(category.Equals("") || quest.Equals(""))
@@ -77,6 +100,8 @@ namespace Hearthstone_Quest_Tracker
 			}
 		}
 		
+		// This puts the items in an string array form so that editing and adding is easier
+		// Triggers comboItemsGenerator() with the appropriate array
 		private void loadComboQuestData(string _category)
 		{
 			string[] classes =
@@ -91,6 +116,14 @@ namespace Hearthstone_Quest_Tracker
 				"Warlock",
 				"Warrior"
 			};
+			string[] minions =
+			{
+				"Beast",
+				"Demon",
+				"Murloc",
+				"Pirate",
+				"Elemental"
+			};
 			string[] others =
 			{
 				"Hero Power"
@@ -100,12 +133,17 @@ namespace Hearthstone_Quest_Tracker
 			{
 				comboItemsGenerator(classes);
 			}
+			else if(_category.Equals("Minion"))
+			{
+				comboItemsGenerator(minions);
+			}
 			else if(_category.Equals("Misc"))
 			{
 				comboItemsGenerator(others);
 			}
 		}
 		
+		// Clear the ObservableCollection, convert string array to ComboBoxItem/s and add it to it. Boom, quest dropdown updated.
 		private void comboItemsGenerator(String[] quests)
 		{
 			quest_list.Clear();

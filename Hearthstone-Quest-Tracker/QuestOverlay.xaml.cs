@@ -22,10 +22,11 @@ using Hearthstone_Deck_Tracker.Utility.Logging;
 namespace Hearthstone_Quest_Tracker
 {
 	/// <summary>
-	/// Interaction logic for QuestOverlay.xaml
+	/// Stuff overlays do
 	/// </summary>
 	public partial class QuestOverlay : UserControl
 	{
+		// Initialization: just clear all fields
 		public QuestOverlay()
 		{
 			InitializeComponent();
@@ -40,6 +41,8 @@ namespace Hearthstone_Quest_Tracker
 			Log.Info("----- Display did get initialized -----");
 		}
 		
+		// Displays/Hides the overlay in a match and sets its location on screen
+		// TODO: if count is < 3 shorten the overlay
 		public void UpdatePosition(int qcount)
 		{
 			this.Visibility = (qcount > 0) ? Visibility.Visible : Visibility.Hidden;
@@ -48,6 +51,9 @@ namespace Hearthstone_Quest_Tracker
 			Log.Info("----- Display tried to get shown -----");
 		}
 
+		// Erases everything and puts the quest_list back in overlay
+		// Also calls updatePosition
+		// TODO: Add a blink effect
 		public void UpdateQuests(List<Quest> quest_list)
 		{
 			classBlock1.Text = "";
@@ -80,8 +86,7 @@ namespace Hearthstone_Quest_Tracker
 				default:
 					Log.Info("----- Invalid quests number -----");
 					break;
-			}
-			
+			}		
 			UpdatePosition(quest_list.Count);
 		}
 		

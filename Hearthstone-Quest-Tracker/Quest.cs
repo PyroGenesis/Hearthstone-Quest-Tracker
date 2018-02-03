@@ -20,7 +20,11 @@ using Hearthstone_Deck_Tracker.Utility.Logging;
 namespace Hearthstone_Quest_Tracker
 {
 	/// <summary>
-	/// Description of Quest.
+	/// This class describes a quest
+	/// quest name - display name
+	/// category = class, minion, other
+	/// count = cards played that satisfy that quest
+	/// reward not used yet
 	/// </summary>
 	public class Quest
 	{
@@ -34,7 +38,7 @@ namespace Hearthstone_Quest_Tracker
 			this.quest_name = qname;
 			if(qname.Equals("Hero Power"))
 				this.category = "other";
-			else if(qname.Equals("Murloc") || qname.Equals("Demon"))
+			else if(qname.Equals("Beast") || qname.Equals("Demon") || qname.Equals("Murloc") ||  qname.Equals("Pirate") || qname.Equals("Demon") || qname.Equals("Elemental"))
 				this.category = "minion";
 			else if(qname.Equals("Warrior") || qname.Equals("Shaman") || qname.Equals("Rogue") || qname.Equals("Paladin") || qname.Equals("Hunter") || qname.Equals("Druid") || qname.Equals("Warlock") || qname.Equals("Mage") || qname.Equals("Priest"))
 				this.category = "class";

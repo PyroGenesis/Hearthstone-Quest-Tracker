@@ -47,6 +47,8 @@
 				<ComboBoxItem
 					x:Name="Class">Class</ComboBoxItem>
 				<ComboBoxItem
+					x:Name="Minion">Minion</ComboBoxItem>
+				<ComboBoxItem
 					x:Name="Other">Misc</ComboBoxItem>
 			</ComboBox>
 			<Label
