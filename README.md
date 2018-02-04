@@ -13,6 +13,7 @@ This plugin does this by allowing you to set and keep track of progress in your 
 Keeps track of the following quests (currently)
 - Class quests: Play X "Class" cards
   - Supports all classes (Druid, Hunter, Mage, Paladin, Priest, Shaman, Rogue, Warlock, Warrior)
+  - Supports Tri-class cards
 - Minion quests
   - Play Tribe cards (Beasts, Demons, Murlocs, Pirates, Elementals)
 - Miscellaneous quests
