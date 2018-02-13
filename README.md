@@ -24,8 +24,8 @@ Keeps track of the following quests (currently)
   - Play X minions that cost 2 or less
   - Play X minions that cost 5 or more
   
-Note: This list will expand as I add support for the rest of play quests.
-- Current completion: 19/30 quests (63% support)
+__Note:__ This list will expand as I add support for the rest of play quests.  
+Current completion: 19/30 quests (63% support)
   
   
 ## Installation
