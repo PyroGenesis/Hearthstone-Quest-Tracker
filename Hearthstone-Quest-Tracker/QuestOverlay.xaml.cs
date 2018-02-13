@@ -66,17 +66,17 @@ namespace Hearthstone_Quest_Tracker
 			switch(quest_list.Count)
 			{
 				case 3:
-					classBlock3.Text = quest_list[2].quest_name;
+					classBlock3.Text = LabelCorrector(quest_list[2].quest_name);
 					playedBlock3.Text = quest_list[2].count.ToString();
 					goto case 2;
 				
 				case 2:
-					classBlock2.Text = quest_list[1].quest_name;
+					classBlock2.Text = LabelCorrector(quest_list[1].quest_name);
 					playedBlock2.Text = quest_list[1].count.ToString();
 					goto case 1;
 				
 				case 1:
-					classBlock1.Text = quest_list[0].quest_name;
+					classBlock1.Text = LabelCorrector(quest_list[0].quest_name);
 					playedBlock1.Text = quest_list[0].count.ToString();
 					break;
 				
@@ -88,6 +88,16 @@ namespace Hearthstone_Quest_Tracker
 					break;
 			}		
 			UpdatePosition(quest_list.Count);
+		}
+		
+		// Modifies the quest names to better fit the overlay
+		private string LabelCorrector(string label)
+		{
+			if(label.StartsWith("Minions that"))
+				return label.Substring(13, 9);
+			else
+				return label;
+				
 		}
 		
 		public void Show()

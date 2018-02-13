@@ -2,7 +2,7 @@ Hearthstone Quest Tracker
 ========================
 This is a plugin for [Hearthstone Deck Tracker](https://github.com/Epix37/Hearthstone-Deck-Tracker)
 
-Hearthstone does not track Daily Quests from within a match. This plugin attempts to fix that. Useful for when you play matches just to complete quests (which I do often).
+Hearthstone does not track Daily Quests from within a match. This plugin attempts to fix that. Useful for when you play to complete quests (which I do often).
 
 This plugin does this by allowing you to set and keep track of progress in your daily quests by tracking played cards.
   
@@ -16,10 +16,16 @@ Keeps track of the following quests (currently)
   - Supports Tri-class cards
 - Minion quests
   - Play Tribe cards (Beasts, Demons, Murlocs, Pirates, Elementals)
+- Card Type quests
+  - Play Spells
+  - Play Weapons
 - Miscellaneous quests
   - Use Hero Power X times
+  - Play X minions that cost 2 or less
+  - Play X minions that cost 5 or more
   
 Note: This list will expand as I add support for the rest of play quests.
+- Current completion: 19/30 quests (63% support)
   
   
 ## Installation

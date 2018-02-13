@@ -55,6 +55,7 @@ namespace Hearthstone_Quest_Tracker
 		
 		// Category should reset everything else so do that
 		// Plus change the label of, and make quest dropdown visible, and trigger the function that loads data into it based on category
+		// FIXME: An error when switching dropdowns
 		void ComboCategory_DropDownClosed(object sender, EventArgs e)
 		{
 			category = ((ComboBoxItem)comboCategory.SelectedItem).Content.ToString();
@@ -65,6 +66,8 @@ namespace Hearthstone_Quest_Tracker
 				labelQuest.Content = "Choose class:";
 			else if(category.Equals("Minion"))
 				labelQuest.Content = "Choose minion:";
+			else if(category.Equals("Card Type"))
+				labelQuest.Content = "Card type:";
 			else if(category.Equals("Misc"))
 				labelQuest.Content = "Choose quest:";
 			labelQuest.Visibility = Visibility.Visible;
@@ -82,7 +85,8 @@ namespace Hearthstone_Quest_Tracker
 		// TODO: Clear everyhing after success or failure
 		void BtnAddQuest_Click(object sender, RoutedEventArgs e)
 		{
-			if(category.Equals("") || quest.Equals(""))
+			// String.IsNullOrEmpty() seems a lot cleaner than .Equals("") 
+			if(String.IsNullOrEmpty(category) || String.IsNullOrEmpty(quest))
 			{
 				MessageBox.Show("Please fill up all required fields", "Failed to add quest", MessageBoxButton.OK, MessageBoxImage.Stop);
 			}
@@ -102,6 +106,7 @@ namespace Hearthstone_Quest_Tracker
 		
 		// This puts the items in an string array form so that editing and adding is easier
 		// Triggers comboItemsGenerator() with the appropriate array
+		// Divides quests into 4 categories: Class, Minion, CardType and Misc
 		private void loadComboQuestData(string _category)
 		{
 			string[] classes =
@@ -124,9 +129,16 @@ namespace Hearthstone_Quest_Tracker
 				"Pirate",
 				"Elemental"
 			};
+			string[] cardtypes =
+			{
+				"Spell",
+				"Weapon"
+			};
 			string[] others =
 			{
-				"Hero Power"
+				"Hero Power",
+				"Minions that cost <= 2",
+				"Minions that cost >= 5"
 			};
 			
 			if(_category.Equals("Class"))
@@ -136,6 +148,10 @@ namespace Hearthstone_Quest_Tracker
 			else if(_category.Equals("Minion"))
 			{
 				comboItemsGenerator(minions);
+			}
+			else if(_category.Equals("Card Type"))
+			{
+				comboItemsGenerator(cardtypes);
 			}
 			else if(_category.Equals("Misc"))
 			{

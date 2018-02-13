@@ -70,7 +70,7 @@ namespace Hearthstone_Quest_Tracker
         internal void GameStart()
         {
         	Log.Info("Internal GameStart just triggered !!!");
-        	// TODO: Tracker should not run in practice or Spectate mode or Dungeon
+        	// TODO: Tracker should not run in Practice or Spectate mode or Dungeon
         	// Puts quests in overlay and displays overlay
         	overlay.UpdateQuests(quest_list);
         }
@@ -90,7 +90,9 @@ namespace Hearthstone_Quest_Tracker
         	bool cardTypeQuest = quest_list.Any(quest => quest.category.Equals("cardtype"));
         	bool otherQuest = quest_list.Any(quest => quest.category.Equals("other"));
         	
-        	Log.Info("----- This card has Race: " + card.Race + " and RaceorType: " + card.RaceOrType + " -----");
+        	Log.Info("----- This card has Cost: " + card.Cost + " and Type: " + card.Type + " -----");
+        	
+        	// Triggers based on the category of quests that are being tracked
         	
         	if(classQuest)
         	{
@@ -113,11 +115,38 @@ namespace Hearthstone_Quest_Tracker
         		}
         	}
         	
+        	// FIXME: May not work with other CardType quests
+        	if(cardTypeQuest)
+        	{
+        		foreach(var q in quest_list)
+        		{
+        			if(card.Type.Equals(q.quest_name))
+        				q.count++;
+        		}
+        	}
+        	
+        	if(otherQuest)
+        	{
+        		foreach(var q in quest_list)
+        		{
+        			if(q.quest_name.StartsWith("Minions that"))
+        			{
+        				if(q.quest_name.EndsWith("2"))
+        				{
+        					if(card.Type.Equals("Minion") && card.Cost<=2)
+        						q.count++;
+        				}
+        				else if(q.quest_name.EndsWith("5"))
+        				{
+        					if(card.Type.Equals("Minion") && card.Cost>=5)
+        						q.count++;
+        				}
+        			}
+        		}
+        	}
+        	
         	// updating overlay count
         	overlay.UpdateQuests(quest_list);
-        	
-        	string oldClass = card.GetPlayerClass;
-        	Log.Info("----- You just played " + oldClass + " " + card.RaceOrType + " card -----");
         }
         
         // Only used for the hero power quest

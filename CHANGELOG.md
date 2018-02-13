@@ -1,7 +1,13 @@
+## __v0.3.0 - 2017-02-14__
+
+- The last quest category, Card Type, added to project
+- Tracking for the quests related to mana cost of minions played added
+- Tracking card types Spells and Weapons added
+
 ## __v0.2.0 - 2018-02-04__
 
 - Minion quest category added to interface
-- Full support for Minion Tribes (Beasts, Demons, Murlocs, Pirates, Elementals) added
+- Quest tracking for Minion Tribes (Beasts, Demons, Murlocs, Pirates, Elementals) added
 - Documentation added (for when I inevitably forget)
 
 ## __v0.1.0 - 2017-12-24__
