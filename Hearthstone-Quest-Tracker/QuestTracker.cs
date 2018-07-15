@@ -113,7 +113,7 @@ namespace Hearthstone_Quest_Tracker
         	// This includes:
         	// Race quests: Beasts, Demons, Murlocs, Pirates, Elementals
         	// CardType quests: Spells, Weapons
-        	// Minion mechanics: Battlecry, Deathrattle, Divine Sield, Enrage, Taunt
+        	// Minion mechanics: Battlecry, Deathrattle, Divine Shield, Enrage, Taunt
         	// CardType quests included in this section as RaceOrType triggers cardtype quests also.
         	if(minionQuest || cardTypeQuest)
         	{

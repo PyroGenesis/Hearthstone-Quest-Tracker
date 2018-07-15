@@ -1,7 +1,7 @@
 ## __v0.4.0 - 2018-07-15__
 
 - A field for starting a quest from a custom count added to the 'Choose quest' dialog.
-- Addition of Battlecry, Deathrattle, Divine Sield, Enrage and Taunt minion quests to the minion category.
+- Addition of Battlecry, Deathrattle, Divine Shield, Enrage and Taunt minion quests to the minion category.
 - Better comments amd instructions
 
 ## __v0.3.0 - 2018-02-14__
