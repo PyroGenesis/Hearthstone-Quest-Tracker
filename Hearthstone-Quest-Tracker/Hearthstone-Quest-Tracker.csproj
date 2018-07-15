@@ -32,10 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HearthDb">
-      <HintPath>D:\Gaming\Hearthstone Deck Tracker\HearthDb.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Local\HearthstoneDeckTracker\app-1.6.0\HearthDb.dll</HintPath>
     </Reference>
-    <Reference Include="Hearthstone Deck Tracker">
-      <HintPath>D:\Gaming\Hearthstone Deck Tracker\Hearthstone Deck Tracker.exe</HintPath>
+    <Reference Include="HearthstoneDeckTracker">
+      <HintPath>..\..\..\..\AppData\Local\HearthstoneDeckTracker\app-1.6.0\HearthstoneDeckTracker.exe</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>

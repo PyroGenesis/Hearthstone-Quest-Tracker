@@ -45,10 +45,12 @@ namespace Hearthstone_Quest_Tracker
 		
 		// Adding a quest to the list (triggered by QuestSelection)
 		// Quests are set using display name
+		// Custom start count is assigned
 		// returns status to QuestSelection
-		internal bool SetQuest(string qname)
+		internal bool SetQuest(string qname, int start_number)
 		{
 			Quest q = new Quest(qname);
+			q.count = start_number;
 			if(quest_list.Count < 3)
 			{
 				quest_list.Add(q);
@@ -90,10 +92,12 @@ namespace Hearthstone_Quest_Tracker
         	bool cardTypeQuest = quest_list.Any(quest => quest.category.Equals("cardtype"));
         	bool otherQuest = quest_list.Any(quest => quest.category.Equals("other"));
         	
-        	Log.Info("----- This card has Cost: " + card.Cost + " and Type: " + card.Type + " -----");
+        	Log.Info("----- This card has Cost: " + card.Cost + " and Type: " + card.Type + " -----" + " and Mechanics: " + string.Join(", ",card.Mechanics));
         	
         	// Triggers based on the category of quests that are being tracked
         	
+        	// This includes all the cards with their respective classes:
+        	// Druid, Hunter, Mage, Paladin, Priest, Shaman, Rogue, Warlock, Warrior
         	if(classQuest)
         	{
         		// foreach used instead of searching because Tri-class cards
@@ -106,25 +110,35 @@ namespace Hearthstone_Quest_Tracker
         		
         	}
         	
-        	if(minionQuest)
+        	// This includes:
+        	// Race quests: Beasts, Demons, Murlocs, Pirates, Elementals
+        	// CardType quests: Spells, Weapons
+        	// Minion mechanics: Battlecry, Deathrattle, Divine Sield, Enrage, Taunt
+        	// CardType quests included in this section as RaceOrType triggers cardtype quests also.
+        	if(minionQuest || cardTypeQuest)
         	{
         		foreach(var q in quest_list)
         		{
         			if(card.RaceOrType.Equals(q.quest_name))
         				q.count++;
-        		}
-        	}
-        	
-        	// FIXME: May not work with other CardType quests
-        	if(cardTypeQuest)
-        	{
-        		foreach(var q in quest_list)
-        		{
-        			if(card.Type.Equals(q.quest_name))
+        			else if(card.Mechanics != null && card.Mechanics.Contains(q.quest_name))
         				q.count++;
         		}
         	}
         	
+        	// FIXME: May not work with other CardType quests
+//        	if(cardTypeQuest)
+//        	{
+//        		foreach(var q in quest_list)
+//        		{
+//        			if(card.Type.Equals(q.quest_name))
+//        				q.count++;
+//        		}
+//        	}
+        	
+        	// This includes:
+        	// Minions with cost <= 2
+        	// Minions with cost >= 5
         	if(otherQuest)
         	{
         		foreach(var q in quest_list)

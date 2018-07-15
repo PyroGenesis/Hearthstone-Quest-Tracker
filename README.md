@@ -16,6 +16,7 @@ Keeps track of the following quests (currently)
   - Supports Tri-class cards
 - Minion quests
   - Play Tribe cards (Beasts, Demons, Murlocs, Pirates, Elementals)
+  - Play Minion Mechanic cards (Battlecry, Deathrattle, Divine Sield, Enrage, Taunt)
 - Card Type quests
   - Play Spells
   - Play Weapons
@@ -25,7 +26,7 @@ Keeps track of the following quests (currently)
   - Play X minions that cost 5 or more
   
 __Note:__ This list will expand as I add support for the rest of play quests.  
-Current completion: 19/30 quests (63% support)
+Current completion: 24/30 quests (80% support)
   
   
 ## Installation
@@ -48,11 +49,15 @@ Current completion: 19/30 quests (63% support)
 
 ![menu](Hearthstone-Quest-Tracker/images/Screenshots/plugin_menu.png)
 
-2. Choose the quest that you want to track using the drop-down menus and click the *Add Quest* button to add it to the tracker
+2. Choose the category of the quest that you want to track using the drop-down menu.
 
-![select](Hearthstone-Quest-Tracker/images/Screenshots/quest_selection.png)
+![category](Hearthstone-Quest-Tracker/images/Screenshots/category_selection.png)
 
-3. Now play any match and the tracker overlay will be displayed
+3. Next, choose the quest to be tracked using the new dropdown menu.
+
+![quest_select](Hearthstone-Quest-Tracker/images/Screenshots/quest_selection.png)
+
+3. Now click the *Add Quest* button to add it to the tracker then play any match and the tracker will be displayed.
 
 
 ## Feedback

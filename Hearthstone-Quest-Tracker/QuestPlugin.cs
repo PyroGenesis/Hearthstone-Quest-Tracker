@@ -140,7 +140,7 @@ namespace Hearthstone_Quest_Tracker
 		public Version Version
 		{
 			// Increment to get Dopamine rush
-			get { return new Version(0, 3, 0); }
+			get { return new Version(0, 4, 0); }
 		}
 	}
 }

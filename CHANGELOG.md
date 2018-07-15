@@ -1,4 +1,10 @@
-## __v0.3.0 - 2017-02-14__
+## __v0.4.0 - 2018-07-15__
+
+- A field for starting a quest from a custom count added to the 'Choose quest' dialog.
+- Addition of Battlecry, Deathrattle, Divine Sield, Enrage and Taunt minion quests to the minion category.
+- Better comments amd instructions
+
+## __v0.3.0 - 2018-02-14__
 
 - The last quest category, Card Type, added to project
 - Tracking for the quests related to mana cost of minions played added

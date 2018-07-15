@@ -49,7 +49,7 @@ namespace Hearthstone_Quest_Tracker
 				this.category = "other";
 			else if(qname.Equals("Spell") || qname.Equals("Weapon"))
 				this.category = "cardtype";
-			else if(qname.Equals("Beast") || qname.Equals("Demon") || qname.Equals("Murloc") ||  qname.Equals("Pirate") || qname.Equals("Demon") || qname.Equals("Elemental"))
+			else if(qname.Equals("Beast") || qname.Equals("Demon") || qname.Equals("Murloc") ||  qname.Equals("Pirate") || qname.Equals("Demon") || qname.Equals("Elemental") || qname.Equals("Battlecry") || qname.Equals("Deathrattle") || qname.Equals("Divine Shield") || qname.Equals("Enrage") || qname.Equals("Taunt"))
 				this.category = "minion";
 			else if(qname.Equals("Warrior") || qname.Equals("Shaman") || qname.Equals("Rogue") || qname.Equals("Paladin") || qname.Equals("Hunter") || qname.Equals("Druid") || qname.Equals("Warlock") || qname.Equals("Mage") || qname.Equals("Priest"))
 				this.category = "class";

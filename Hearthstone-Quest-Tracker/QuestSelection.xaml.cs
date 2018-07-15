@@ -31,16 +31,17 @@ namespace Hearthstone_Quest_Tracker
 	/// </summary>
 	public partial class QuestSelection : Window
 	{
-		// Stores actual cateegory and quest chosen
+		// Stores actual cateegory, quest chosen and the custom start count
 		internal string category;
 		internal string quest;
+		internal int start_number;
 		
 		// The ObservableCollection is a collection that will force UI using it to update (the quest dropdown)
 		// The tracker object is used for Setting quests (which I get from main tracker)
 		private ObservableCollection<ComboBoxItem> quest_list;
 		private QuestTracker tracker;
 
-		// Initialize stuff, display the window, empty out category and quest and set the source of quest dropdown to the ObservableCollection
+		// Initialize stuff, display the window, empty out category, quest and start count and set the source of quest dropdown to the ObservableCollection
 		public QuestSelection(QuestTracker _tracker)
 		{
 			InitializeComponent();
@@ -49,6 +50,7 @@ namespace Hearthstone_Quest_Tracker
 			this.Visibility = Visibility.Visible;
 			this.category = "";
 			this.quest = "";
+			this.start_number = 0;
 			this.quest_list = new ObservableCollection<ComboBoxItem>();
 			comboQuest.ItemsSource = quest_list;
 		}
@@ -79,20 +81,37 @@ namespace Hearthstone_Quest_Tracker
 			quest = ((ComboBoxItem)comboQuest.SelectedItem).Content.ToString();
 		}
 		
+		// Automatically empty out custom start count (when 0) for better experience
+		void Startno_GotFocus(object sender, RoutedEventArgs e)
+		{
+			startno.Text = startno.Text == "0" ? string.Empty : startno.Text;
+		}
+		
 		// If every data is OK, try to add quest
 		// If not display error
 		// If failure display error (>3 quests not possible)
 		// TODO: Clear everyhing after success or failure
 		void BtnAddQuest_Click(object sender, RoutedEventArgs e)
 		{
-			// String.IsNullOrEmpty() seems a lot cleaner than .Equals("") 
+			String strstartno = startno.Text;
+			// String.IsNullOrEmpty() seems a lot cleaner than .Equals("")
 			if(String.IsNullOrEmpty(category) || String.IsNullOrEmpty(quest))
 			{
 				MessageBox.Show("Please fill up all required fields", "Failed to add quest", MessageBoxButton.OK, MessageBoxImage.Stop);
 			}
+			// Checks for the validity of start count
+			else if (!int.TryParse(strstartno, out start_number))
+			{
+				MessageBox.Show("Start number is not a valid number", "Failed to add quest", MessageBoxButton.OK, MessageBoxImage.Stop);
+			}
+			else if (start_number<0 || start_number>999)
+			{
+				MessageBox.Show("Start number should be in range 0-1000", "Failed to add quest", MessageBoxButton.OK, MessageBoxImage.Stop);
+			}
+			// If all inputs are valid
 			else
 			{
-				bool status = tracker.SetQuest(quest);
+				bool status = tracker.SetQuest(quest, start_number);
 				if(status)
 				{
 					MessageBox.Show("Quest for "+quest+" added!", "Quest added successfully", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -127,7 +146,12 @@ namespace Hearthstone_Quest_Tracker
 				"Demon",
 				"Murloc",
 				"Pirate",
-				"Elemental"
+				"Elemental",
+				"Battlecry",
+				"Deathrattle",
+				"Divine Shield",
+				"Enrage",
+				"Taunt"
 			};
 			string[] cardtypes =
 			{
