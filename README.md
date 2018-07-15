@@ -45,19 +45,23 @@ Current completion: 24/30 quests (80% support)
   
   
 ## How to use
-1. Use the *Chosse Quests* option in HDT's plugin menu to open the quest selection window.
+#### 1. Use the *Choose Quests* option in HDT's plugin menu to open the quest selection window.
 
 ![menu](Hearthstone-Quest-Tracker/images/Screenshots/plugin_menu.png)
 
-2. Choose the category of the quest that you want to track using the drop-down menu.
+#### 2. Choose the category of the quest that you want to track using the drop-down menu.
 
 ![category](Hearthstone-Quest-Tracker/images/Screenshots/category_selection.png)
 
-3. Next, choose the quest to be tracked using the new dropdown menu.
+#### 3. Next, choose the quest to be tracked using the new dropdown menu.
 
 ![quest_select](Hearthstone-Quest-Tracker/images/Screenshots/quest_selection.png)
 
-3. Now click the *Add Quest* button to add it to the tracker then play any match and the tracker will be displayed.
+#### 4. _(Optional):_ Enter a custom start count to start your quest from this value.
+
+![count](Hearthstone-Quest-Tracker/images/Screenshots/count_selection.png)
+
+#### 5. Now click the *Add Quest* button to add it to the tracker then play any match and the tracker will be displayed.
 
 
 ## Feedback
