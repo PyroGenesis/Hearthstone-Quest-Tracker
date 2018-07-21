@@ -27,7 +27,6 @@ namespace Hearthstone_Quest_Tracker
 	/// So I used DropDownClosed which is much better
 	/// A set of two methods: loadComboQuestData() and comboItemsGenerator() are used to repopulate the quest dropdown
 	/// 
-	/// TODO: Add support for custom count
 	/// </summary>
 	public partial class QuestSelection : Window
 	{
@@ -123,6 +122,18 @@ namespace Hearthstone_Quest_Tracker
 			}
 		}
 		
+		// Click trigger for the "Clear All" button
+		// Puts out a confirm dialog then clears the quest list by executing a function using the tracker object
+		void ClearQuests_Click(object sender, RoutedEventArgs e)
+		{
+			MessageBoxResult confirmClear = MessageBox.Show("Do you want to clear all tracked quests?", "Are you sure", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+			
+			if(confirmClear == MessageBoxResult.Yes)
+			{
+				tracker.clearQuests();
+			}
+		}
+		
 		// This puts the items in an string array form so that editing and adding is easier
 		// Triggers comboItemsGenerator() with the appropriate array
 		// Divides quests into 4 categories: Class, Minion, CardType and Misc
@@ -156,7 +167,9 @@ namespace Hearthstone_Quest_Tracker
 			string[] cardtypes =
 			{
 				"Spell",
-				"Weapon"
+				"Weapon",
+				"Combo",
+				"Secret"
 			};
 			string[] others =
 			{

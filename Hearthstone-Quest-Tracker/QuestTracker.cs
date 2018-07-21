@@ -64,6 +64,12 @@ namespace Hearthstone_Quest_Tracker
 			}
 		}
 		
+		// Very short function used to clear the current quest list
+		internal void clearQuests()
+		{
+			quest_list.Clear();
+		}
+		
 		internal void TurnStart(ActivePlayer player)
         {
 			Log.Info("Internal TurnStart just triggered !!!");
@@ -92,7 +98,7 @@ namespace Hearthstone_Quest_Tracker
         	bool cardTypeQuest = quest_list.Any(quest => quest.category.Equals("cardtype"));
         	bool otherQuest = quest_list.Any(quest => quest.category.Equals("other"));
         	
-        	Log.Info("----- This card has Cost: " + card.Cost + " and Type: " + card.Type + " -----" + " and Mechanics: " + string.Join(", ",card.Mechanics));
+        	Log.Info("---------- This card has Cost: " + card.Cost + " and Type: " + card.Type + " and Mechanics: " + string.Join(", ",card.Mechanics) + " ----------");
         	
         	// Triggers based on the category of quests that are being tracked
         	

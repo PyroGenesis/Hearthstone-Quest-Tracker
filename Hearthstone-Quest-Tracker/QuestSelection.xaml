@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Window
 	x:Class="Hearthstone_Quest_Tracker.QuestSelection" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	Title="Choose Quests"
@@ -111,9 +111,20 @@
 				Content="Add Quest"
 				Height="25"
 				Width="75"
+				Margin="2px"
 				HorizontalAlignment="Right"
 				VerticalAlignment="Bottom"
 				Click="BtnAddQuest_Click" />
+			<Button
+				Name="clearQuests"
+				DockPanel.Dock="Right"
+				Content="Clear All"
+				Height="25"
+				Width="75"
+				Margin="2px"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Bottom"
+				Click="ClearQuests_Click" />
 		</DockPanel>
 	</Grid>
 </Window>

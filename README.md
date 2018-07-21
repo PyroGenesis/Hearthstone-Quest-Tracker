@@ -20,13 +20,15 @@ Keeps track of the following quests (currently)
 - Card Type quests
   - Play Spells
   - Play Weapons
+  - Play Secrets
+  - Play Combo cards
 - Miscellaneous quests
   - Use Hero Power X times
   - Play X minions that cost 2 or less
   - Play X minions that cost 5 or more
   
 __Note:__ This list will expand as I add support for the rest of play quests.  
-Current completion: 24/30 quests (80% support)
+Current completion: 26/30 quests (87% support)
   
   
 ## Installation

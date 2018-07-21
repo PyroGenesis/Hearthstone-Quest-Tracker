@@ -47,7 +47,7 @@ namespace Hearthstone_Quest_Tracker
 			this.quest_name = qname;
 			if(qname.Equals("Hero Power") || qname.StartsWith("Minions that"))
 				this.category = "other";
-			else if(qname.Equals("Spell") || qname.Equals("Weapon"))
+			else if(qname.Equals("Spell") || qname.Equals("Weapon") || qname.Equals("Secret") || qname.Equals("Combo"))
 				this.category = "cardtype";
 			else if(qname.Equals("Beast") || qname.Equals("Demon") || qname.Equals("Murloc") ||  qname.Equals("Pirate") || qname.Equals("Demon") || qname.Equals("Elemental") || qname.Equals("Battlecry") || qname.Equals("Deathrattle") || qname.Equals("Divine Shield") || qname.Equals("Enrage") || qname.Equals("Taunt"))
 				this.category = "minion";
