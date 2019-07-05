@@ -99,7 +99,7 @@
 				Padding="5,0,5,0"
 				Text="0"
 				Width="50"
-				GotFocus="Startno_GotFocus"			/>
+				GotFocus="Startno_GotFocus"	/>
 		</Grid>
 		<DockPanel
 			Height="75"

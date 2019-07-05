@@ -30,7 +30,7 @@ namespace Hearthstone_Quest_Tracker
 	/// </summary>
 	public partial class QuestSelection : Window
 	{
-		// Stores actual cateegory, quest chosen and the custom start count
+		// Stores actual category, quest chosen and the custom start count
 		internal string category;
 		internal string quest;
 		internal int start_number;
@@ -51,6 +51,7 @@ namespace Hearthstone_Quest_Tracker
 			this.quest = "";
 			this.start_number = 0;
 			this.quest_list = new ObservableCollection<ComboBoxItem>();
+			// The second comboBox source is set to the ObservableCollection so that it is dynamic and any changes are reflected
 			comboQuest.ItemsSource = quest_list;
 		}
 		
@@ -59,22 +60,29 @@ namespace Hearthstone_Quest_Tracker
 		// FIXME: An error when switching dropdowns
 		void ComboCategory_DropDownClosed(object sender, EventArgs e)
 		{
+			// Assign content of first comboBox to category variable
 			category = ((ComboBoxItem)comboCategory.SelectedItem).Content.ToString();
+			// Clear out any pre-selected quests
 			quest = "";
+			// Populate second comboBox based on value of category, employing the ObservableCollection
 			loadComboQuestData(category);
 			
+			// Modify the label of the second comboBox based on category selected (just aesthetics)
 			if(category.Equals("Class"))
 				labelQuest.Content = "Choose class:";
 			else if(category.Equals("Minion"))
 				labelQuest.Content = "Choose minion:";
 			else if(category.Equals("Card Type"))
 				labelQuest.Content = "Card type:";
-			else if(category.Equals("Misc"))
+			else
 				labelQuest.Content = "Choose quest:";
+			
+			// Make the second label and comboBox visible
 			labelQuest.Visibility = Visibility.Visible;
 			comboQuest.Visibility = Visibility.Visible;
 		}
 		
+		// Simply set the content of the second combo box as quest once it is closed
 		void ComboQuest_DropDownClosed(object sender, EventArgs e)
 		{
 			quest = ((ComboBoxItem)comboQuest.SelectedItem).Content.ToString();
@@ -110,6 +118,7 @@ namespace Hearthstone_Quest_Tracker
 			// If all inputs are valid
 			else
 			{
+				// Attempt to set the quest in tracker
 				bool status = tracker.SetQuest(quest, start_number);
 				if(status)
 				{
@@ -137,6 +146,7 @@ namespace Hearthstone_Quest_Tracker
 		// This puts the items in an string array form so that editing and adding is easier
 		// Triggers comboItemsGenerator() with the appropriate array
 		// Divides quests into 4 categories: Class, Minion, CardType and Misc
+		// TODO: Make quests a global resource
 		private void loadComboQuestData(string _category)
 		{
 			string[] classes =
@@ -164,6 +174,10 @@ namespace Hearthstone_Quest_Tracker
 				"Enrage",
 				"Taunt"
 			};
+			string[] manaCosts = {
+				"Minions that cost <= 2",
+				"Minions that cost >= 5"
+			};
 			string[] cardtypes =
 			{
 				"Spell",
@@ -174,8 +188,6 @@ namespace Hearthstone_Quest_Tracker
 			string[] others =
 			{
 				"Hero Power",
-				"Minions that cost <= 2",
-				"Minions that cost >= 5"
 			};
 			
 			if(_category.Equals("Class"))
@@ -186,6 +198,9 @@ namespace Hearthstone_Quest_Tracker
 			{
 				comboItemsGenerator(minions);
 			}
+			else if(_category.Equals("Mana Cost"))
+			{
+				comboItemsGenerator(manaCosts);
 			else if(_category.Equals("Card Type"))
 			{
 				comboItemsGenerator(cardtypes);

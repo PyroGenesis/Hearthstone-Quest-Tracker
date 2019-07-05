@@ -72,12 +72,12 @@ namespace Hearthstone_Quest_Tracker
 		
 		internal void TurnStart(ActivePlayer player)
         {
-			Log.Info("Internal TurnStart just triggered !!!");
+			Log.Info("----- Quest TurnStart -----");
         }
 
         internal void GameStart()
         {
-        	Log.Info("Internal GameStart just triggered !!!");
+        	Log.Info("----- Quest GameStart -----");
         	// TODO: Tracker should not run in Practice or Spectate mode or Dungeon
         	// Puts quests in overlay and displays overlay
         	overlay.UpdateQuests(quest_list);
@@ -85,16 +85,18 @@ namespace Hearthstone_Quest_Tracker
         
         internal void GameEnd()
         {
-        	Log.Info("----- Game has Ended -----");
+        	Log.Info("----- Quest GameEnd -----");
         	// TODO: Hide overlay only after victory screen
         	overlay.Hide();
         }
         
         internal void CardPlay(Card card)
         {
+        	Log.Info("----- Quest CardPlay -----");
         	// Booleans to see if tracker should check the card with a particular category of quest
         	bool classQuest = quest_list.Any(quest => quest.category.Equals("class"));
         	bool minionQuest = quest_list.Any(quest => quest.category.Equals("minion"));
+        	bool manaQuest = quest_list.Any(quest => quest.category.Equals("mana"));
         	bool cardTypeQuest = quest_list.Any(quest => quest.category.Equals("cardtype"));
         	bool otherQuest = quest_list.Any(quest => quest.category.Equals("other"));
         	
@@ -145,7 +147,7 @@ namespace Hearthstone_Quest_Tracker
         	// This includes:
         	// Minions with cost <= 2
         	// Minions with cost >= 5
-        	if(otherQuest)
+        	if(manaQuest)
         	{
         		foreach(var q in quest_list)
         		{

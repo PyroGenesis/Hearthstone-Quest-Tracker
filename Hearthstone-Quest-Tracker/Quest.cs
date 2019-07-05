@@ -57,5 +57,56 @@ namespace Hearthstone_Quest_Tracker
 			this.count = 0;
 			this.reward = 0;
 		}
+		
+//		public static string[] getQuestList(string category) {
+//			string[] classes =
+//			{
+//				"Druid",
+//				"Hunter",
+//				"Mage",
+//				"Paladin",
+//				"Priest",
+//				"Shaman",
+//				"Rogue",
+//				"Warlock",
+//				"Warrior"
+//			};
+//			string[] minions =
+//			{
+//				"Beast",
+//				"Demon",
+//				"Murloc",
+//				"Pirate",
+//				"Elemental",
+//				"Battlecry",
+//				"Deathrattle",
+//				"Divine Shield",
+//				"Enrage",
+//				"Taunt"
+//			};
+//			string[] cardtypes =
+//			{
+//				"Spell",
+//				"Weapon",
+//				"Combo",
+//				"Secret"
+//			};
+//			string[] others =
+//			{
+//				"Hero Power",
+//				"Minions that cost <= 2",
+//				"Minions that cost >= 5"
+//			};
+//			
+//			if(category.Equals("classes")) {
+//			   	return classes;
+//			} else if(category.Equals("minions")) {
+//			   	return minions;
+//			} else if(category.Equals("cardtypes")) {
+//			   	return cardtypes;
+//			} else if(category.Equals("others")) {
+//			   	return others;
+//			} else 
+//		}
 	}
 }

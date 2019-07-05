@@ -41,7 +41,7 @@ namespace Hearthstone_Quest_Tracker
 		    overlay = new QuestOverlay();
 		    CoreAPI.OverlayCanvas.Children.Add(overlay);
 		    
-		    // Overlay added to Mai class to actually modiy it
+		    // Overlay added to tracker object on initialization so that it could be modified
 		    QuestTracker tracker = new QuestTracker(overlay);
 			
 		    // Mapping GameEvents from API.GameEvents
@@ -140,7 +140,7 @@ namespace Hearthstone_Quest_Tracker
 		public Version Version
 		{
 			// Increment to get Dopamine rush
-			get { return new Version(0, 4, 5); }
+			get { return new Version(0, 5, 0); }
 		}
 	}
 }
