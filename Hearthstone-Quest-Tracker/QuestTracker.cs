@@ -70,9 +70,20 @@ namespace Hearthstone_Quest_Tracker
 			quest_list.Clear();
 		}
 		
+		// Used for the take turns quest
 		internal void TurnStart(ActivePlayer player)
         {
 			Log.Info("----- Quest TurnStart -----");
+        	bool otherQuest = quest_list.Any(quest => quest.category.Equals("other"));
+        	if(otherQuest)
+        	{
+        		foreach(var q in quest_list)
+        		{
+        			if(q.quest_name.Equals("Take Turns"))
+        				q.count++;
+        		}
+        	}
+        	overlay.UpdateQuests(quest_list);
         }
 
         internal void GameStart()
@@ -185,5 +196,6 @@ namespace Hearthstone_Quest_Tracker
         	}
         	overlay.UpdateQuests(quest_list);
         }
+        
 	}
 }

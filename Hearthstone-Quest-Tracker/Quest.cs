@@ -30,8 +30,9 @@ namespace Hearthstone_Quest_Tracker
 	/// Quest categories:
 	/// Class: Playing class cards
 	/// Minion: Play minion with tribe (Eg: Murloc) or Ability (Eg: Battlecry, Enrage)
+	/// Mana Cost: Play minions / cards with cost criteria (<=, >=, ==, odd, even)
 	/// Card Type: Play cards of a type (Eg: Spells, Weapons, Secrets)
-	/// Miscellaneous: Rest of play quests (Deal damage, Play cards with X cost, Hero Power)
+	/// Miscellaneous: Rest of play quests (Deal damage, Hero Power, draw, turn, destroy minions)
 	/// 
 	/// </summary>
 	public class Quest
@@ -42,10 +43,13 @@ namespace Hearthstone_Quest_Tracker
 		internal int goal;
 		internal int reward;
 		
+		
 		public Quest(string qname)
 		{
 			this.quest_name = qname;
-			if(qname.Equals("Hero Power") || qname.StartsWith("Minions that"))
+			if(qname.StartsWith("Minions that"))
+				this.category = "mana";
+			else if(qname.Equals("Hero Power") || qname.Equals("Take Turns"))
 				this.category = "other";
 			else if(qname.Equals("Spell") || qname.Equals("Weapon") || qname.Equals("Secret") || qname.Equals("Combo"))
 				this.category = "cardtype";

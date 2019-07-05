@@ -51,6 +51,8 @@
 				<ComboBoxItem
 					x:Name="Minion">Minion</ComboBoxItem>
 				<ComboBoxItem
+					x:Name="ManaCost">Mana Cost</ComboBoxItem>
+				<ComboBoxItem
 					x:Name="CardType">Card Type</ComboBoxItem>
 				<ComboBoxItem
 					x:Name="Other">Misc</ComboBoxItem>

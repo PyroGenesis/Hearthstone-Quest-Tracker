@@ -145,7 +145,7 @@ namespace Hearthstone_Quest_Tracker
 		
 		// This puts the items in an string array form so that editing and adding is easier
 		// Triggers comboItemsGenerator() with the appropriate array
-		// Divides quests into 4 categories: Class, Minion, CardType and Misc
+		// Divides quests into 5 categories: Class, Minion, ManaCost, CardType and Misc
 		// TODO: Make quests a global resource
 		private void loadComboQuestData(string _category)
 		{
@@ -188,6 +188,7 @@ namespace Hearthstone_Quest_Tracker
 			string[] others =
 			{
 				"Hero Power",
+				"Take Turns"
 			};
 			
 			if(_category.Equals("Class"))
@@ -201,6 +202,7 @@ namespace Hearthstone_Quest_Tracker
 			else if(_category.Equals("Mana Cost"))
 			{
 				comboItemsGenerator(manaCosts);
+			}
 			else if(_category.Equals("Card Type"))
 			{
 				comboItemsGenerator(cardtypes);
