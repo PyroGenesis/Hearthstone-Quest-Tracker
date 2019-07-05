@@ -50,6 +50,7 @@ namespace Hearthstone_Quest_Tracker
 			GameEvents.OnPlayerPlay.Add(tracker.CardPlay);
 			GameEvents.OnGameEnd.Add(tracker.GameEnd);
 			GameEvents.OnPlayerHeroPower.Add(tracker.HeroPower);
+			GameEvents.OnPlayerDraw.Add(tracker.PlayerDraw);
 			
 			// Adding Choose Quest menu label
 			this.menuItem = new MenuItem() { Header = "Choose Quests" };

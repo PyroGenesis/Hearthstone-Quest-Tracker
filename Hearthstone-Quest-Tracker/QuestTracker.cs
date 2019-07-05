@@ -197,5 +197,9 @@ namespace Hearthstone_Quest_Tracker
         	overlay.UpdateQuests(quest_list);
         }
         
+       	// TODO: Will be used for the card draw quest
+        internal void PlayerDraw(Card card) {
+        	
+        }
 	}
 }
